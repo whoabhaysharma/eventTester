@@ -1,14 +1,7 @@
 import puppeteer from 'puppeteer';
 import { sendNotification } from './message.js';
-import cron from 'node-cron'
-import express from 'express'
 
-const app = express()
-app.listen(3000, () => {
-    console.log("LISTENING")
-})
-
-const fetchDataAndNotify = async() => {
+export const fetchDataAndNotify = async() => {
     const browser = await puppeteer.launch({
         headless: true,
         executablePath: puppeteer.executablePath()
@@ -34,7 +27,3 @@ const fetchDataAndNotify = async() => {
 
     await browser.close();
 }
-
-cron.schedule('*/30 * * * * *', async () => {
-    await fetchDataAndNotify();
-});
