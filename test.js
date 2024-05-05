@@ -1,10 +1,13 @@
 import puppeteer from 'puppeteer';
 import { sendNotification } from './message.js';
+import dotenv from 'dotenv';
+
+dotenv.config()
 
 export const fetchDataAndNotify = async() => {
     const browser = await puppeteer.launch({
         headless: true,
-        executablePath: puppeteer.executablePath()
+        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH
     });
     const page = await browser.newPage();
 
