@@ -4,7 +4,7 @@ import cron from 'node-cron'
 
 const fetchDataAndNotify = async() => {
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
         executablePath: puppeteer.executablePath()
     });
     const page = await browser.newPage();
