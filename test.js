@@ -1,7 +1,14 @@
 import puppeteer from 'puppeteer';
 import { sendNotification } from './message.js';
+import cron from 'node-cron'
+import express from 'express'
 
-(async () => {
+const app = express()
+app.listen(3000, () => {
+    console.log("LISTENING")
+})
+
+const fetchDataAndNotify = async() => {
     const browser = await puppeteer.launch({
         headless: true,
         executablePath: puppeteer.executablePath()
@@ -26,11 +33,8 @@ import { sendNotification } from './message.js';
     }
 
     await browser.close();
-})()
-// const fetchDataAndNotify = async() => {
-   
-// }
+}
 
-// cron.schedule('*/30 * * * * *', async () => {
-//     await fetchDataAndNotify();
-// });
+cron.schedule('*/30 * * * * *', async () => {
+    await fetchDataAndNotify();
+});

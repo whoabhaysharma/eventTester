@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
+    "express": "^4.19.2",
     "node-cron": "^3.0.3",
     "notificationapi-node-server-sdk": "^1.0.0",
     "puppeteer": "^22.7.1"
