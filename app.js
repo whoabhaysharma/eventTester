@@ -1,12 +1,16 @@
 import express from 'express'
 import { fetchDataAndNotify } from './test.js'
 import cron from 'node-cron'
+import dotenv from 'dotenv';
 
+dotenv.config()
+
+const time = process.env.JOB_TIME
 const app = express()
 app.listen(3000, () => {
     setInterval(
         fetchDataAndNotify,
-        60000
+        time * 1000
     )
 })
 
@@ -31,4 +35,4 @@ cron.schedule('*/5 * * * *', async () => {
             // Handle any errors that occurred during the fetch request
             // console.error('Error:', error);
         });
-});
+});1
